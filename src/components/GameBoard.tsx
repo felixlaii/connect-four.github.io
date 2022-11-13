@@ -64,6 +64,10 @@ const GameBoard: React.FunctionComponent = (): JSX.Element => {
           checkDiagonalLeft(rowIndex, columnIndex)
         );
       };
+      const checkDiagonalLeft = (
+        rowIndex: number,
+        columnIndex: number
+      )
 }
 
 export default GameBoard
