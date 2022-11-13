@@ -43,6 +43,18 @@ const GameBoard: React.FunctionComponent = (): JSX.Element => {
           }
         }
       };
+
+      const drawCheck = (): boolean => {
+        let isBoardFilled: boolean =
+          board.rows.filter(
+            (row: Row) =>
+              row.columns.filter((column: Column) => column.player === null)
+                .length > 0
+          ).length > 0
+            ? false
+            : true;
+        return isBoardFilled;
+      };
 }
 
 export default GameBoard
