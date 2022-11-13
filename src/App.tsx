@@ -1,10 +1,13 @@
-import React from 'react';
 import './App.css';
+import GameBoard from './components/GameBoard';
+import React from 'react';
 
-function App() {
+const App: React.FunctionComponent = ():JSX.Element => {
+
   return (
-    <div className="App">
-
+    <div>
+      <h1>Connect Four</h1>
+      <GameBoard/>
     </div>
   );
 }
