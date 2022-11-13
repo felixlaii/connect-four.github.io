@@ -55,6 +55,15 @@ const GameBoard: React.FunctionComponent = (): JSX.Element => {
             : true;
         return isBoardFilled;
       };
+
+      const winCheck = (rowIndex: number, columnIndex: number): boolean => {
+        return (
+          checkHorizontal(rowIndex, columnIndex) ||
+          checkVertical(rowIndex, columnIndex) ||
+          checkDiagonalRight(rowIndex, columnIndex) ||
+          checkDiagonalLeft(rowIndex, columnIndex)
+        );
+      };
 }
 
 export default GameBoard
