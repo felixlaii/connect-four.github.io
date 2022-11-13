@@ -1,4 +1,4 @@
-import { Column } from "src/components/interfaces/Column";
+import { Column } from "./Column";
 
 export interface Row {
     columns: Column[]
