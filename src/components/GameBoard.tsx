@@ -67,7 +67,37 @@ const GameBoard: React.FunctionComponent = (): JSX.Element => {
       const checkDiagonalLeft = (
         rowIndex: number,
         columnIndex: number
-      )
+      ): boolean => {
+        let columnToStartFrom: number = columnIndex;
+        let consecutiveTiles: number = 0;
+        let rowToStartFrom: number = rowIndex;
+        for (let i: number = 0; i < c4Rows; i++) {
+          let column: Column = board.rows[rowIndex - i]?.columns[columnIndex + i];
+          if (column) {
+            columnToStartFrom = columnIndex + i;
+            rowToStartFrom = rowIndex - i;
+          } else {
+            break;
+          }
+        }
+        for (let j: number = 0; j < c4Rows; j++) {
+          let column: Column =
+            board.rows[rowToStartFrom + j]?.columns[columnToStartFrom - j];
+          if (column) {
+            if (
+              column.player === board.rows[rowIndex].columns[columnIndex].player
+            ) {
+              consecutiveTiles++;
+              if (consecutiveTiles >= 4) {
+                return true;
+              }
+            } else {
+              consecutiveTiles = 0;
+            }
+          }
+        }
+        return false;
+      };
 }
 
 export default GameBoard
