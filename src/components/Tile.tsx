@@ -6,3 +6,9 @@ interface Props {
     column: Column;
     updateBoard: (columnIndex: number) => void;
 }
+
+const Tile: React.FunctionComponent<Props> = ({
+    columnIndex,
+    updateBoard,
+    column,
+  }
