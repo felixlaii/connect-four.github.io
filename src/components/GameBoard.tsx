@@ -98,6 +98,93 @@ const GameBoard: React.FunctionComponent = (): JSX.Element => {
         }
         return false;
       };
-}
+      const checkDiagonalRight = (
+        rowIndex: number,
+        columnIndex: number
+      ): boolean => {
+        let consecutiveTiles: number = 0;
+        let indexDifference: number = rowIndex - columnIndex;
+        let rowToStartFrom: number = 0;
+        let columnToStartFrom: number = 0;
+        if (indexDifference > 0) {
+          rowToStartFrom = indexDifference;
+        } else if (indexDifference !== 0) {
+          columnToStartFrom = Math.abs(indexDifference);
+        }
+        for (let i: number = 0; i < c4Rows; i++) {
+          let column =
+            board.rows[rowToStartFrom + i]?.columns[columnToStartFrom + i];
+          if (column) {
+            if (
+              column.player === board.rows[rowIndex].columns[columnIndex].player
+            ) {
+              consecutiveTiles++;
+              if (consecutiveTiles >= 4) {
+                return true;
+              }
+            } else {
+              consecutiveTiles = 0;
+            }
+          }
+        }
+        return false;
+      };
+      const checkVertical = (rowIndex: number, columnIndex: number): boolean => {
+        let row: Row = board.rows[rowIndex];
+        let consecutiveRows: number = 0;
+        for (let r: number = 0; r < c4Rows; r++) {
+          if (
+            board.rows[r].columns[columnIndex].player ===
+            row.columns[columnIndex].player
+          ) {
+            consecutiveRows++;
+            if (consecutiveRows >= 4) {
+              return true;
+            }
+          } else {
+            consecutiveRows = 0;
+          }
+        }
+        return false;
+      };
+      const checkHorizontal = (rowIndex: number, columnIndex: number): boolean => {
+        let row: Row = board.rows[rowIndex];
+        let consecutiveColumns: number = 0;
+        for (let c: number = 0; c < c4Columns; c++) {
+          if (row.columns[c].player === row.columns[columnIndex].player) {
+            consecutiveColumns++;
+            if (consecutiveColumns >= 4) {
+              return true;
+            }
+          } else {
+            consecutiveColumns = 0;
+          }
+        }
+        return false;
+      };
+      return (
+        <div>
+          <div
+            className="button"
+            onClick={() => {
+              setBoard(initialBoard);
+            }}
+          >
+            New Game
+          </div>
+          <table>
+            <thead></thead>
+            <tbody>
+              {board.rows.map(
+                (row: Row, i: number): JSX.Element => (
+                  <GameRow key={i} row={row} updateBoard={updateBoard} />
+                )
+              )}
+            </tbody>
+          </table>
+        </div>
+      );
+    };
+
 
 export default GameBoard
