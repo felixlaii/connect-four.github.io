@@ -4,3 +4,13 @@ import GameRow from "./GameRow";
 import { Board } from "./interfaces/Board";
 import { Row } from "./interfaces/Row";
 import { Column } from "./interfaces/Column";
+
+const GameBoard: React.FunctionComponent = (): JSX.Element => {
+    const initialBoard: Board = {
+        rows: Array.from({ length: c4Rows }, (_, i) => ({
+          columns: Array.from({ length: c4Columns }, (_, i) => ({ player: null })),
+        })),
+      };
+}
+
+export default GameBoard
