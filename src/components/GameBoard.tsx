@@ -11,6 +11,8 @@ const GameBoard: React.FunctionComponent = (): JSX.Element => {
           columns: Array.from({ length: c4Columns }, (_, i) => ({ player: null })),
         })),
       };
+      const [board, setBoard] = useState<Board>(initialBoard);
+      const [currPlayer, setCurrPlayer] = useState<number>(1);
 }
 
 export default GameBoard
